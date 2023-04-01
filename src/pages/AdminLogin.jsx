@@ -12,8 +12,8 @@ export default function AdminLogin ({setIsAuth}) {
         e.preventDefault();
         console.log(username, password)
     
-        axios.post("http://localhost:8080/", {
-            email: username, 
+        axios.post("http://localhost:8080/api/signin/admin", {
+            username, 
             password,
         })
         .then(data => {
@@ -38,8 +38,8 @@ export default function AdminLogin ({setIsAuth}) {
             <h2>Login to your account</h2>
             <form action="/home" onSubmit={checkLogin}>
                 <p>
-                    <label>Email address</label><br/>
-                    <input type="email" name="email" required onChange={e => setUsername(e.target.value)} />
+                    <label>Username</label><br/>
+                    <input type="text" name="text" required onChange={e => setUsername(e.target.value)} />
                 </p>
                 <p>
                     <label>Password</label>

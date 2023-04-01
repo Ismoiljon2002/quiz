@@ -4,12 +4,12 @@ import './styles/Login.css';
 
 export default function SignInPage({setIsAuth}) {
 
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const checkLogin = e => {
         e.preventDefault();
-        console.log(email, password)
+        console.log(username, password)
     
         // axios.post("https://enchanting-goat-top-coat.cyclic.app/login", {
         //     email, 
@@ -35,10 +35,10 @@ export default function SignInPage({setIsAuth}) {
     return (
         <div className="login-page text-center m-5-auto">
             <h2>Login to your account</h2>
-            <form action="/home" onSubmit={checkLogin}>
+            <form action="/" onSubmit={checkLogin}>
                 <p>
-                    <label>Email address</label><br/>
-                    <input type="email" name="email" required onChange={e => setEmail(e.target.value)} />
+                    <label>Username</label><br/>
+                    <input type="text" name="text" required onChange={e => setUsername(e.target.value)} />
                 </p>
                 <p>
                     <label>Password</label>
@@ -51,7 +51,6 @@ export default function SignInPage({setIsAuth}) {
                 </p>
                 {/* <p>First time? <Link to="/auth/register">Create an account</Link>.</p> */}
             </form>
-            <p><Link to="/">Back to Homepage</Link>.</p>
         </div>
     )
 }
