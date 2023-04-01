@@ -1,23 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import NavbarComponent from "./components/Navbar";
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+import AdminLogin from "./pages/AdminLogin";
+import SignInPage from "./pages/LoginPage";
+import SignUpPage from "./pages/RegisterPage";
+import ForgetPasswordPage from "./pages/ForgetPasswordPage";
+import Quiz from "./components/Quiz";
+
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'semantic-ui-css/semantic.min.css'
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <NavbarComponent />
+      <Router>
+        <Routes>
+          {/* <Route path="/" element={<h1>Hello World</h1>} /> */}
+          <Route path="/auth/hidden-admin/login" element={<AdminLogin />} />
+          <Route path="/" element={<SignInPage />} />
+          <Route path="/auth/register" element={<SignUpPage />} />
+          <Route path="/auth/forgot-password" element={<ForgetPasswordPage />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/userData" element={"userdata"} />
+        </Routes>
+      </Router>
+      
     </div>
   );
 }

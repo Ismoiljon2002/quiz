@@ -1,0 +1,105 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+* {
+  font-family: "Source Sans Pro", sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+  min-height: 100vh;
+}
+
+.home,
+.register-page,
+.login-page,
+.forgot-password-page,
+.quiz-page {
+  min-height: 80vh;
+  padding: 60px 0;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.col-md-3,
+.col-md-4,
+.col-md-6,
+.col-md-9,
+.col-sm-3,
+.col-sm-6,
+.col-sm-9 {
+  float: left;
+}
+
+.clr {
+  clear: both;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* ====  SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
+  cursor: pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #77b586;
+  border-radius: 3.5px;
+  box-shadow: 0 0 5px #77b586;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #242541;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+.navbar {
+  background-color: #242541 !important;
+  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-brand {
+  font-size: 26px !important;
+  font-weight: 600;
+}
+.navbar-brand > img {
+  width: 150px;
+}
+
+.navbar-toggler {
+  font-size: 15px !important;
+  padding: 5px 10px !important;
+  border: 1px solid #fff !important;
+}
+
+.navbar-user-img {
+  display: inline-block;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  margin-right: 10px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+.navbar-user-img > svg {
+  font-size: 25px;
+}
+
+.nav-link {
+  color: rgba(255, 255, 255, 0.8);
+}/*# sourceMappingURL=Navbar.css.map */

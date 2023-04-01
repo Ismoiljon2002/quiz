@@ -1,0 +1,98 @@
+// Colors
+$light-bg-color: #f8f8f8;
+$dark-bg-color1: #0e0f11;
+$dark-bg-color2: #0b223f;
+$dark-bg-color3: #0c1a2d;
+$header-dark-color: #161f38;
+$orange: #fa3c28;
+$blue: #0f45da;
+
+$base-dark: #242541;
+$base-green: #77b586;
+
+// Fonts 
+// Poppins
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+// Sourse Sans Pro
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap');
+
+* {
+  font-family: 'Source Sans Pro', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden !important;
+  min-height: 100vh;
+}
+
+// set min-height to all the pages
+.home, 
+.register-page, 
+.login-page, 
+.forgot-password-page,
+.quiz-page {
+    min-height: 80vh; 
+    padding: 60px 0;
+    position: relative;
+    transition: 0.3s ease;
+}
+
+.col-md-3,
+.col-md-4,
+.col-md-6,
+.col-md-9,
+.col-sm-3,
+.col-sm-6,
+.col-sm-9 {
+  float: left;
+}
+
+.clr {clear: both;}
+
+a {text-decoration: none !important;}
+
+@mixin center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin setBgImg {
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+}
+
+@mixin cardStyle {
+  background-color: $light-bg-color;
+  color: $base-dark;
+  border-radius: 5px;
+}
+
+/* ====  SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: $light-bg-color;
+  cursor: pointer;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: $base-green;
+  border-radius: 3.5px;
+  box-shadow: 0 0 5px $base-green;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: $base-dark;
+  transition: 0.3s ease;
+}
