@@ -9,11 +9,10 @@ export default function ForgetPasswordPage() {
 
     const resetPassword = e => {
         e.preventDefault();
-        console.log(e, "email");
+        console.log(email, "email");
 
-        axios.post("http://localhost:8080/api/reset_password", email)
+        axios.post(`http://localhost:8080/api/forgot_password?email=${email}`)
         .then(data => {
-            console.log(data, "came from reset...");
             if ( data.status === 200 ) {
                 alert("reset success, now go to your email and smash the given link");
             } else {
@@ -26,10 +25,10 @@ export default function ForgetPasswordPage() {
     return (
         <div className="forgot-password-page text-center m-5-auto">
             <h2>Reset your password</h2>
-            <form action="/">
+            <form action="/forgot_password" onSubmit={e => resetPassword(e)}>
                 <p>
                     <label id="reset_pass_lbl">Email address</label><br />
-                    <input type="email" name="email" required onChange={e => setEmail(e.taget.value)} />
+                    <input type="email" name="email" required onChange={e => setEmail(e.target.value)} />
                 </p>
                 <p>
                     <button id="sub_btn" type="submit">Reset</button>

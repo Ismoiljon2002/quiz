@@ -1,5 +1,7 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+
 import './styles/Login.css';
 
 export default function SignInPage({setIsAuth}) {
@@ -11,24 +13,24 @@ export default function SignInPage({setIsAuth}) {
         e.preventDefault();
         console.log(username, password)
     
-        // axios.post("https://enchanting-goat-top-coat.cyclic.app/login", {
-        //     email, 
-        //     password,
-        // })
-        // .then(data => {
-        //     console.log(data.data, "came from user login...");
-        //     if ( data.data.status === 'OK') {
-        //         setIsAuth(true);
-        //         setTimeout(() => {
-        //             alert("login success")
-        //             window.localStorage.setItem("token", data.data.data)
-        //             window.location.href = './userData';
-        //         }, 100);
+        axios.post("http://localhost:8080/api/signin/", {
+            username, 
+            password,
+        })
+        .then(data => {
+            console.log(data.data, "came from user login...");
+            if ( data.data.status === 'OK') {
+                setIsAuth(true);
+                setTimeout(() => {
+                    alert("login success")
+                    window.localStorage.setItem("token", data.data.data)
+                    window.location.href = './userData';
+                }, 100);
 
-        //     } else {
-        //         alert("Error! " + data.data.error)
-        //     }
-        // })
+            } else {
+                alert("Error! " + data.data.error)
+            }
+        })
 
     }
 
