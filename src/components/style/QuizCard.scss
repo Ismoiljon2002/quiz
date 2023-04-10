@@ -1,89 +1,125 @@
 @import '../../base';
 
-.quiz-page .card {
-    width: 100% !important;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba($base-dark, 0.2);
+.quiz-page {
+    padding: 60px 5%;
 
-    .header {padding: 20px}
-
-    .question-number {
-        display: inline-block;
-        font-size: 33px;
-        font-weight: 600;
-        border-radius: 5px;
-        padding: 20px 20px 10px;
-        border: 1px solid $base-dark;
-        @include cardStyle;
-    }
-
-    .buttons {
-        border-radius: 5px;
-        float: right;
-        border: 1px solid $base-dark;
-        button {
-            padding: 15px;
-            background-color: $light-bg-color;
-            color: $base-dark;
-            font-size: 34px;
-            font-weight: 600;
-        }
-    }
-
-    .message {
-        font-size: 20px;
-        padding: 10px 0;
-    }
-
-    .question {
-        font-size: 24px;
-        font-weight: 500;
+    .card {
+        width: 100% !important;
         padding: 20px;
-        margin: 10px 0 20px;
-        box-shadow: 0 2px 6px rgba($base-dark, 0.4);
-        @include cardStyle;
-    }
-    ul {
-        overflow: hidden;
-        list-style-type: none;
         border-radius: 10px;
-        border: 2px solid #b7b7b7;
-        box-shadow: 0 5px 15px rgba($base-dark, 0.4);
+        box-shadow: 0 2px 5px rgba($base-dark, 0.2);
 
-        li {
-            position: relative;
+        .header {
+            padding: 20px
+        }
+
+        .question-number {
+            display: inline-block;
+            font-size: 33px;
+            font-weight: 600;
+            border-radius: 5px;
+            padding: 20px 20px 10px;
+            border: 1px solid $base-dark;
+            @include cardStyle;
+        }
+
+
+        .buttons {
+            overflow-x: scroll;
+            width: 100%;
+            border-radius: 5px;
+            border: 1px solid $base-dark;
+            button {
+                padding: 15px;
+                background-color: #fff;
+                color: $base-dark;
+                font-size: 34px;
+                font-weight: 600;
+            }
+        }
+
+        .message {
             font-size: 20px;
-            padding: 20px 40px 20px 60px;
-            margin-left: -30px;
-            border: 1px solid transparent;
-            transition: 0.3s ease;
-            cursor: pointer;
-            &.active {
-                background-color: $light-bg-color;
-                &::before {
-                    content: '✅';
-                    // width: 20px;
-                    // height: 20px;
-                    // border-radius: 50%;
-                    // background-color: $base-green;
-                    position: absolute;
-                    margin: 0 0 0 -40px;
+            padding: 10px 0;
+        }
+
+        .question {
+            font-size: 24px;
+            font-weight: 500;
+            padding: 20px;
+            margin: 10px 0 20px;
+            box-shadow: 0 2px 6px rgba($base-dark, 0.4);
+            @include cardStyle;
+        }
+
+        ul {
+            overflow: hidden;
+            list-style-type: none;
+            border-radius: 10px;
+            border: 2px solid #b7b7b7;
+            box-shadow: 0 5px 15px rgba($base-dark, 0.4);
+
+            li {
+                position: relative;
+                font-size: 20px;
+                padding: 20px 40px 20px 60px;
+                margin-left: -30px;
+                border: 1px solid transparent;
+                transition: 0.3s ease;
+                cursor: pointer;
+
+                &.active {
+                    background-color: $light-bg-color;
+
+                    &::before {
+                        content: '✅';
+                        // width: 20px;
+                        // height: 20px;
+                        // border-radius: 50%;
+                        // background-color: $base-green;
+                        position: absolute;
+                        margin: 0 0 0 -40px;
+                    }
+                }
+
+                &:hover {
+                    background-color: rgba($light-bg-color, 0.8);
+                    box-shadow: 0 2px 5px rgba($base-dark, 0.2);
                 }
             }
-            &:hover {
-                background-color: rgba($light-bg-color, 0.8);
-                box-shadow: 0 2px 5px rgba($base-dark, 0.2);
+        }
+
+        .footer-card {
+            padding: 10px;
+
+            button {
+                padding: 15px 20px;
+                font-size: 20px;
             }
         }
-    }
+    };
 
-    .card-footer {
-        padding: 10px;
-        
-        button {
-            padding: 15px 20px;
-            font-size: 20px;
+    .right-side-card {
+        padding: 0px;
+        .header > .buttons {
+            overflow:hidden;
+            >button {background-color: $light-bg-color;}
         }
-    }
+        .card-body > .buttons {
+            overflow: hidden;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+            padding: 5%;
+
+            >button {
+                width: 40px !important;
+                height: 40px;
+                padding: 5px;
+                
+                border-radius: 10px;
+                font-size: 20px;
+            }
+        }
+    } 
 }

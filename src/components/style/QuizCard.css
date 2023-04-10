@@ -68,6 +68,9 @@ a {
   transition: 0.3s ease;
 }
 
+.quiz-page {
+  padding: 60px 5%;
+}
 .quiz-page .card {
   width: 100% !important;
   padding: 20px;
@@ -89,13 +92,14 @@ a {
   border-radius: 5px;
 }
 .quiz-page .card .buttons {
+  overflow-x: scroll;
+  width: 100%;
   border-radius: 5px;
-  float: right;
   border: 1px solid #242541;
 }
 .quiz-page .card .buttons button {
   padding: 15px;
-  background-color: #f8f8f8;
+  background-color: #fff;
   color: #242541;
   font-size: 34px;
   font-weight: 600;
@@ -142,10 +146,33 @@ a {
   background-color: rgba(248, 248, 248, 0.8);
   box-shadow: 0 2px 5px rgba(36, 37, 65, 0.2);
 }
-.quiz-page .card .card-footer {
+.quiz-page .card .footer-card {
   padding: 10px;
 }
-.quiz-page .card .card-footer button {
+.quiz-page .card .footer-card button {
   padding: 15px 20px;
+  font-size: 20px;
+}
+.quiz-page .right-side-card {
+  padding: 0px;
+}
+.quiz-page .right-side-card .header > .buttons {
+  overflow: hidden;
+}
+.quiz-page .right-side-card .header > .buttons > button {
+  background-color: #f8f8f8;
+}
+.quiz-page .right-side-card .card-body > .buttons {
+  overflow: hidden;
+  gap: 10px;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 5%;
+}
+.quiz-page .right-side-card .card-body > .buttons > button {
+  width: 40px !important;
+  height: 40px;
+  padding: 5px;
+  border-radius: 10px;
   font-size: 20px;
 }/*# sourceMappingURL=QuizCard.css.map */
