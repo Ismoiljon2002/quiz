@@ -1,14 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Container, Navbar, NavDropdown, Nav, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';
 
 import './style/Navbar.css';
 import i from '../img/i.jpg';
 import logo from '../img/logo.jfif';
-
+import { UserContext } from '../context/UserContext';
 
 function NavbarComponent() {
-    return (
+
+    const { user, setUser } = useContext(UserContext);
+    console.log(user?.username === "")
+
+    if ( user?.username !== "" ) return (
         <Navbar variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">
