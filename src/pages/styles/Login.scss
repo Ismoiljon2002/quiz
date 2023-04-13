@@ -1,12 +1,6 @@
 @import "../../base";
 
 /***    Login Page     ***/
-h2 {
-    color: #fff;
-    letter-spacing: 1px;
-    font-weight: 600;
-    padding: 0 0 20px !important;
-}
 
 .login-page {
     background-image: url('../../img/univer1.jpg');
@@ -27,6 +21,13 @@ h2 {
         -10px 10px 35px rgba(#000, 0.7),
         -3px 5px 20px rgba(#000, 0.7);
     
+        h2 {
+            color: #fff;
+            letter-spacing: 1px;
+            font-weight: 600;
+            padding: 0 0 20px !important;
+        }
+
         input, .input-email {
             border: 1px solid transparent !important;
             border-radius: 10px !important;

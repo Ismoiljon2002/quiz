@@ -69,13 +69,6 @@ a {
 }
 
 /***    Login Page     ***/
-h2 {
-  color: #fff;
-  letter-spacing: 1px;
-  font-weight: 600;
-  padding: 0 0 20px !important;
-}
-
 .login-page {
   background-image: url("../../img/univer1.jpg");
   background-repeat: no-repeat;
@@ -95,6 +88,12 @@ h2 {
   border-radius: 20px;
   padding: 2rem;
   box-shadow: 20px -10px 30px rgba(255, 255, 255, 0.35), -10px 10px 35px rgba(0, 0, 0, 0.7), -3px 5px 20px rgba(0, 0, 0, 0.7);
+}
+.login-page form h2 {
+  color: #fff;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 0 0 20px !important;
 }
 .login-page form input, .login-page form .input-email {
   border: 1px solid transparent !important;
