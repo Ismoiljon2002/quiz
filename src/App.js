@@ -21,10 +21,9 @@ function App() {
           <Route path="/" element={<SignInPage />} />
           <Route path="/auth/hidden-admin/login" element={<AdminLogin />} />
           <Route path="/auth/forgot-password" element={<ForgetPasswordPage />} />
-          <Route element={<ProtectedRoutes />} >
-            <Route path="/quiz" element={<Quiz />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-          </Route>
+          {/* <Route element={<ProtectedRoutes />} ></Route> */}
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>
     </div>

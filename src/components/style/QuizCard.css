@@ -18,8 +18,9 @@ body {
 .register-page,
 .login-page,
 .forgot-password-page,
-.quiz-page {
-  min-height: 80vh;
+.quiz-page,
+.dashboard {
+  min-height: calc(100vh - 100px);
   padding: 60px 0;
   position: relative;
   transition: 0.3s ease;

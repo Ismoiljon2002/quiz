@@ -16,6 +16,7 @@ export default function SignInPage() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
 
     const checkLogin = e => {
         e.preventDefault();
@@ -63,7 +64,7 @@ export default function SignInPage() {
                         onChange={e => setPassword(e.target.value)} required />
 
                     <React.Fragment>
-                        <Checkbox label="Remember Me" />
+                        <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember) } />
 
                         <Link to="/auth/forgot-password">Forgot password?</Link>
                     </React.Fragment>
