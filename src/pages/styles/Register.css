@@ -1,51 +1,142 @@
-/***    Login Page     ***/
-h2 {
-  font-weight: 300;
-}
-
-form {
-  display: inline-block;
-  background: #f3f3f3;
-  border: 1px solid #ddd;
-  border-radius: 5px;
-  padding: 2rem;
-  margin: 1.5rem 0 1rem 0;
-  box-shadow: 0 5px 50px rgba(0, 0, 0, 0.08);
-}
-
-form label {
-  float: left;
-  font-size: 0.9rem;
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap");
+* {
+  font-family: "Source Sans Pro", sans-serif;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
-.right-label {
-  float: right;
+html,
+body {
+  overflow-x: hidden !important;
+  min-height: 100vh;
+}
+
+.home,
+.register-page,
+.login-page,
+.forgot-password-page,
+.quiz-page {
+  min-height: 80vh;
+  padding: 60px 0;
+  position: relative;
+  transition: 0.3s ease;
+}
+
+.col-md-3,
+.col-md-4,
+.col-md-6,
+.col-md-9,
+.col-sm-3,
+.col-sm-6,
+.col-sm-9 {
+  float: left;
+}
+
+.clr {
+  clear: both;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+/* ====  SCROLLBAR === */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f8f8f8;
   cursor: pointer;
 }
 
-input {
-  width: 15rem;
-  padding: 0.3rem;
-  border-radius: 5px;
-  outline: none;
-  border: none;
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #77b586;
+  border-radius: 3.5px;
+  box-shadow: 0 0 5px #77b586;
 }
 
-#sub_btn {
-  display: block;
-  width: 100%;
-  padding: 0.3rem;
-  border: none;
-  background: #222;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #242541;
+  -webkit-transition: 0.3s ease;
+  transition: 0.3s ease;
+}
+
+/***    Login Page     ***/
+h2 {
   color: #fff;
-  border-radius: 3px;
+  letter-spacing: 1px;
+  font-weight: 600;
+  padding: 0 0 20px !important;
 }
 
-#sub_btn:hover {
-  background: #333;
-  transition: all 0.5s;
+.login-page {
+  background-image: url("../../img/univer1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  min-height: 100vh !important;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.login-page form {
+  width: 400px;
+  height: 500px;
+  background: rgba(36, 37, 65, 0.45);
+  -webkit-backdrop-filter: blur(7px);
+          backdrop-filter: blur(7px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: 20px -10px 30px rgba(255, 255, 255, 0.35), -10px 10px 35px rgba(0, 0, 0, 0.7), -3px 5px 20px rgba(0, 0, 0, 0.7);
+}
+.login-page form input, .login-page form .input-email {
+  border: 1px solid transparent !important;
+  border-radius: 10px !important;
+  padding: 13px 22px !important;
+  font-size: 20px !important;
+  background: rgba(36, 37, 65, 0.75) !important;
+  color: #fff !important;
+}
+.login-page form input:focus, .login-page form .input-email:focus {
+  border: 1px solid #21ba45 !important;
+  border-left-width: 7px !important;
+  padding: 13px 15px !important;
+}
+.login-page form .input-text {
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+}
+.login-page form .input-password {
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+}
+.login-page form .checkbox {
+  padding: 30px 80px 30px 0;
+}
+.login-page form .checkbox label {
+  font-size: 16px !important;
+  color: #fff !important;
+}
+.login-page form a {
+  color: #ffffff;
+  font-size: 16px;
+  cursor: pointer;
+}
+.login-page form a:hover {
+  text-decoration: underline !important;
+}
+.login-page form button {
+  border-radius: 10px !important;
+  letter-spacing: 2px;
+}
+.login-page form .reset-password-btn {
+  margin: 30px 0;
 }
 
 #checkbox {

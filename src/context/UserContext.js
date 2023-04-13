@@ -21,8 +21,9 @@ export const UserProvider = ({ children }) => {
         ],
         active:true,
     });
+    const [ isAuth, setIsAuth ] = useState(true)
 
-    return <UserContext.Provider value={{ user, setUser }}>
+    return <UserContext.Provider value={{ user, setUser, isAuth, setIsAuth }}>
         {children}
     </UserContext.Provider>
 }

@@ -1,16 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Container, Navbar, NavDropdown, Nav, Button, OverlayTrigger, Tooltip } from 'react-bootstrap';
+import React, { useContext } from 'react';
+import { Container, Navbar, NavDropdown, Nav } from 'react-bootstrap';
 import * as Icon from 'react-bootstrap-icons';
 
 import './style/Navbar.css';
 import i from '../img/i.jpg';
 import logo from '../img/logo.jfif';
 import { UserContext } from '../context/UserContext';
+import { Link } from 'react-router-dom';
 
 function NavbarComponent() {
 
     const { user, setUser } = useContext(UserContext);
-    console.log(user?.username === "")
 
     if ( user?.username !== "" ) return (
         <Navbar variant="dark" expand="lg">
@@ -21,14 +21,14 @@ function NavbarComponent() {
                 <Navbar.Toggle aria-controls="basic-navbar-nav" />
                 <Navbar.Collapse id="basic-navbar-nav">
                     <Nav className="me-auto">
-                        <Nav.Link href="/dashboard">Dashboard</Nav.Link>
-                        <Nav.Link href="/quiz">Quiz</Nav.Link>
+                        <Link to="/dashboard" className='nav-link'>Dashboard</Link>
+                        <Link to="/quiz" className='nav-link'>Quiz</Link>
                         <NavDropdown title="Courses" id="basic-nav-dropdown">
-                            <NavDropdown.Item href="#courses/3.1">Course 1</NavDropdown.Item>
+                            <NavDropdown.Item href="#courses/3.1"> Course 1 </NavDropdown.Item>
                             <NavDropdown.Item href="#courses/3.2">
                                 Another Course
                             </NavDropdown.Item>
-                            <NavDropdown.Item href="#courses/3.3">Course #3</NavDropdown.Item>
+                            <NavDropdown.Item href="#courses/3.3"> Course #3 </NavDropdown.Item>
                             <NavDropdown.Divider />
                             <NavDropdown.Item href="#courses/3.4">
                                 Math 211

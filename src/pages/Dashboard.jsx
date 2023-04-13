@@ -1,5 +1,4 @@
 import React, { useState, useEffect, useContext } from 'react';
-import NavbarComponent from '../components/Navbar';
 import { UserContext } from '../context/UserContext';
 
 import AdminDashboard from './roles/AdminDashboard';
@@ -13,29 +12,13 @@ function Dashboard() {
 
     switch (user?.role) {
         case "admin":
-            return (
-                <>
-                    {/* <NavbarComponent /> */}
-                    <AdminDashboard />
-                </>
-            );
+            return <AdminDashboard />;
         case "professor":
-            return (
-                <>
-                    {/* <NavbarComponent /> */}
-                    <ProfessorDashboard />
-                </>
-            );
+            return <ProfessorDashboard />;
         case "student":
-            return (
-                <>
-                    {/* <NavbarComponent /> */}
-                    <StudentDashboard />
-                </>
-            );
-                
+            return <StudentDashboard />;
         default:
-            return <h1>Something is wrong</h1>
+            return <h1>Something is wrong</h1>;
     }
 }
 

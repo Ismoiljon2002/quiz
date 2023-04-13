@@ -1,20 +1,25 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
+import React, { useContext, useState } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
+import axios from 'axios';
+import { UserContext } from '../context/UserContext';
 
-// import logo from '../img/nuu_logo.png';
 import logo from '../img/logo-light.png';
 import './styles/Login.css';
 
-export default function SignInPage({ setIsAuth }) {
+export default function SignInPage() {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { isAuth, setIsAuth } = useContext(UserContext)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
     const checkLogin = e => {
         e.preventDefault();
-        console.log(username, password)
+        console.log(username, password);
 
         axios.post("http://localhost:8080/api/signin/", {
             username,
@@ -33,7 +38,11 @@ export default function SignInPage({ setIsAuth }) {
                 } else {
                     alert("Error! " + data.data.error)
                 }
-            })
+            });
+
+        if ( isAuth && location.state?.from ) {
+            navigate(location.state.from)
+        }
 
     }
 
@@ -47,11 +56,11 @@ export default function SignInPage({ setIsAuth }) {
                     <h2>Login to Your account</h2>
 
                     <input
-                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required/>
+                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
-                        onChange={e => setPassword(e.target.value)} required/>
+                        onChange={e => setPassword(e.target.value)} required />
 
                     <React.Fragment>
                         <Checkbox label="Remember Me" />
