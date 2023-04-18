@@ -12,7 +12,7 @@ export default function SignInPage() {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { isAuth, setIsAuth } = useContext(UserContext)
+    const { isAuth, setIsAuth, setUser } = useContext(UserContext)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -20,30 +20,50 @@ export default function SignInPage() {
 
     const checkLogin = e => {
         e.preventDefault();
-        console.log(username, password);
-
-        axios.post("http://localhost:8080/api/signin/", {
+        setIsAuth(!isAuth);
+        setUser({
             username,
+            first_name: "Ismoiljon",
+            last_name: "Mirabdullayev",
+            middle_name: "Ibrohimjon o'g'li",
+            dob: "29-06-2002",
+            email: "2110176@newuu.uz",
             password,
+            role: "professor",
+            coursesList:[ 1, 2, 3, 4,
+                {course_id:1},
+                {course_id:2},
+                {course_id:3},
+                {course_id:4},
+                {course_id:5},
+            ],
+            active:true,
         })
-            .then(data => {
-                console.log(data.data, "came from user login...");
-                if (data.data.status === 'OK') {
-                    setIsAuth(true);
-                    setTimeout(() => {
-                        alert("login success")
-                        window.localStorage.setItem("token", data.data.data)
-                        window.location.href = './userData';
-                    }, 100);
 
-                } else {
-                    alert("Error! " + data.data.error)
-                }
-            });
+        navigate('/dashboard');
 
-        if ( isAuth && location.state?.from ) {
-            navigate(location.state.from)
-        }
+        // axios.post("http://localhost:8080/api/signin/", {
+        //     username,
+        //     password,
+        // })
+        //     .then(data => {
+        //         console.log(data.data, "came from user login...");
+        //         if (data.data.status === 'OK') {
+        //             setIsAuth(true);
+        //             setTimeout(() => {
+        //                 alert("login success")
+        //                 window.localStorage.setItem("token", data.data.data)
+        //                 window.location.href = './userData';
+        //             }, 100);
+
+        //         } else {
+        //             alert("Error! " + data.data.error)
+        //         }
+        //     });
+
+        // if ( isAuth && location.state?.from ) {
+        //     navigate(location.state.from)
+        // }
 
     }
 

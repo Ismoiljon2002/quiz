@@ -1,18 +1,30 @@
-import React, { useState, useContext } from 'react';
-import { Button, Icon, Popup, Card, Container, Grid } from 'semantic-ui-react';
-import QuestionCard from './QuestionCard';
+import React, { useState, useContext, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+
+import { UserContext } from '../context/UserContext';
 import { QuizContext } from '../context/QuizContext';
+
+import { Button, Icon, Popup, Card, Grid } from 'semantic-ui-react';
+import QuestionCard from './QuestionCard';
+
 import './style/QuizCard.css';
 
 function Quiz() {
+    const navigate = useNavigate()
 
     const { questionList } = useContext(QuizContext);
+    const { isAuth } = useContext(UserContext);
+
     const [activeQuestion, setActiveQuestion] = useState(0);
 
-    if (!questionList) return (
-        <h1 className='container'>You are not authorized</h1>
-    );
-    else return (
+    useEffect(() => {
+        if ( !isAuth ) {
+            navigate('/');
+            return;
+        } 
+    }, [])
+
+    return (
         <div className='quiz-page'>
             <Grid>
                 <Grid.Column width={12}>

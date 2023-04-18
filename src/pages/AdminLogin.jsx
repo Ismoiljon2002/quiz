@@ -1,58 +1,78 @@
-import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import React, { useState, useContext } from 'react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
+import { UserContext } from '../context/UserContext';
 import axios from 'axios';
+
+import logo from '../img/logo-light.png';
 import './styles/Login.css';
 
-export default function AdminLogin ({setIsAuth}) {
+export default function AdminLogin () {
+
+    const navigate = useNavigate();
+    const location = useLocation();
+
+    const { isAuth, setIsAuth } = useContext(UserContext)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [remember, setRemember] = useState(false);
 
     const checkLogin = e => {
         e.preventDefault();
-        console.log(username, password)
-    
-        axios.post("http://localhost:8080/api/signin/admin", {
-            username, 
+        console.log(username, password);
+
+        axios.post("http://localhost:8080/api/signin/", {
+            username,
             password,
         })
-        .then(data => {
-            console.log(data.data, "came from user login...");
-            if ( data.status === 200 ) {
-                // setIsAuth(true);
-                setTimeout(() => {
-                    alert("login success")
-                    window.localStorage.setItem("token", data.data.data)
-                    window.location.href = './userData';
-                }, 100);
+            .then(data => {
+                console.log(data.data, "came from user login...");
+                if (data.data.status === 'OK') {
+                    setIsAuth(true);
+                    setTimeout(() => {
+                        alert("login success")
+                        window.localStorage.setItem("token", data.data.data)
+                        window.location.href = './userData';
+                    }, 100);
 
-            } else {
-                alert("Error! " + data.error)
-            }
-        })
+                } else {
+                    alert("Error! " + data.data.error)
+                }
+            });
+
+        if ( isAuth && location.state?.from ) {
+            navigate(location.state.from)
+        }
 
     }
 
     return (
         <div className="login-page text-center m-5-auto">
-            <h2>Login to your account</h2>
-            <form action="/home" onSubmit={checkLogin}>
-                <p>
-                    <label>Username</label><br/>
-                    <input type="text" name="text" required onChange={e => setUsername(e.target.value)} />
-                </p>
-                <p>
-                    <label>Password</label>
-                    <Link to="/auth/forgot-password"><label className="right-label">Forgot password?</label></Link>
-                    <br/>
-                    <input type="password" name="password" required onChange={e => setPassword(e.target.value)} />
-                </p>
-                <p>
-                    <button id="sub_btn" type="submit">Login</button>
-                </p>
-                {/* <p>First time? <Link to="/auth/register">Create an account</Link>.</p> */}
-            </form>
-            <p><Link to="/">Back to Homepage</Link>.</p>
+
+            <Form onSubmit={checkLogin}>
+                <Form.Field required>
+
+                    <img src={logo} />
+                    <h2>Login to Your account</h2>
+
+                    <input
+                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required />
+                    <input className='input-password'
+                        type="password"
+                        placeholder="Password"
+                        onChange={e => setPassword(e.target.value)} required />
+
+                    <React.Fragment>
+                        <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember) } />
+
+                        <Link to="/auth/forgot-password">Forgot password?</Link>
+                    </React.Fragment>
+
+                    <Button type='submit' size="big" color='green' fluid>Login</Button>
+                </Form.Field>
+            </Form>
+
         </div>
     )
 }

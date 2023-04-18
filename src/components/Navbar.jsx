@@ -10,9 +10,13 @@ import { Link } from 'react-router-dom';
 
 function NavbarComponent() {
 
-    const { user, setUser } = useContext(UserContext);
+    const { isAuth, setIsAuth, user, setUser } = useContext(UserContext);
+    const logout = () => {
+        setIsAuth(!isAuth);
+        setUser({})
+    }
 
-    if ( user?.username !== "" ) return (
+    if ( isAuth ) return (
         <Navbar variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="#home">
@@ -43,10 +47,12 @@ function NavbarComponent() {
                             {/* <Icon.PersonCircle /> */}
                         </div>
                         <NavDropdown title={"Ismoiljon Mirabdullaev"} id="basic-nav-dropdown">
-                            <NavDropdown.Item>ID: {2110176}</NavDropdown.Item>
+                            <NavDropdown.Item>ID: {user?.username}</NavDropdown.Item>
                             <NavDropdown.Item>Edit Profile <Icon.PencilSquare /></NavDropdown.Item>
                             <NavDropdown.Divider />
-                            <NavDropdown.Item className="text-bold text-danger">
+                            <NavDropdown.Item className="text-bold text-danger"
+                            onClick={logout}
+                            >
                                 LOGOUT <Icon.BoxArrowInUpRight />
                             </NavDropdown.Item>
                         </NavDropdown>

@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useContext } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 
 import AdminDashboard from './roles/AdminDashboard';
@@ -7,8 +8,15 @@ import StudentDashboard from './roles/StudentDashboard';
 
 function Dashboard() {
 
-    const { user } = useContext(UserContext);
-    console.log(user, "user")
+    const { user, isAuth } = useContext(UserContext);
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if ( !isAuth ) {
+            navigate('/');
+            return;
+        } 
+    }, [])
 
     switch (user?.role) {
         case "admin":
@@ -18,7 +26,7 @@ function Dashboard() {
         case "student":
             return <StudentDashboard />;
         default:
-            return <h1>Something is wrong</h1>;
+            navigate('/');
     }
 }
 
