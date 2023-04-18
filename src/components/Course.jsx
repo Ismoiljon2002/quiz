@@ -5,14 +5,14 @@ import { Button, Card, Table } from "react-bootstrap";
 
 function Course({ course }) {
 
-    
     const [quizQuestions, setQuizQuestions] = useState(null)
     let selectedQuestions = [];
 
     const addToExamPaper = (e, id) => {
-        console.log(e.target)
-        if (e.target) selectedQuestions.push(id);
+        console.log(e.target.checked)
+        if (e.target.checked) selectedQuestions.push(id);
         else selectedQuestions = selectedQuestions.filter(el => el !== id);
+        console.log(selectedQuestions, 'sq')
     }
 
     const sendExamPaper = () => {
@@ -33,7 +33,7 @@ function Course({ course }) {
                 if (res.status === 200 ) setQuizQuestions(res.data);
                 else console.log(res.status)
             }).catch(err => console.log("response error\n", err));
-    }, quizQuestions)
+    }, [])
 
     return (
         <Card className="container">
