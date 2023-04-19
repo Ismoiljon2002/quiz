@@ -22,29 +22,28 @@ export default function AdminLogin () {
         e.preventDefault();
         console.log(username, password);
 
-        axios.post("http://localhost:8080/api/signin/", {
+        axios.post("http://localhost:8080/api/v1/admin/login", {
             username,
             password,
         })
             .then(data => {
-                console.log(data.data, "came from user login...");
+                console.log(data.data, "came from admin login...");
                 if (data.data.status === 'OK') {
                     setIsAuth(true);
-                    setTimeout(() => {
+                    // setTimeout(() => {
                         alert("login success")
                         window.localStorage.setItem("token", data.data.data)
                         window.location.href = './userData';
-                    }, 100);
+                    // }, 100);
 
                 } else {
                     alert("Error! " + data.data.error)
                 }
             });
 
-        if ( isAuth && location.state?.from ) {
-            navigate(location.state.from)
-        }
-
+        // if ( isAuth && location.state?.from ) {
+        //     navigate(location.state.from)
+        // }
     }
 
     return (
