@@ -1,26 +1,36 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox } from 'semantic-ui-react';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
 
 import logo from '../img/logo-light.png';
 import './styles/Login.css';
 
-export default function AdminLogin () {
+export default function AdminLogin() {
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { isAuth, setIsAuth, token, setToken, user, setUser } = useContext(UserContext)
+    const { setIsAuth, setToken, setUser } = useContext(UserContext)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(false);
+    useEffect(() => {
+        if (localStorage.getItem('a-u-n') && localStorage.getItem('p')) {
+            setUsername(localStorage.getItem('a-u-n'));
+            setPassword(localStorage.getItem('p'));
+        }
+    })
 
     const checkLogin = e => {
         e.preventDefault();
         console.log(username, password);
+        if ( remember ) {
+            localStorage.setItem('a-u-n', username);
+            localStorage.setItem('p', password);
+        }
 
         axios.post("http://localhost:8080/api/v1/admin/login", {
             username,
@@ -28,16 +38,16 @@ export default function AdminLogin () {
         })
             .then(data => {
                 console.log(data, "came from admin login...");
-                if (data.data.status === 200) {
+                if (data.status === 200) {
                     setIsAuth(true);
                     setToken(data.data.accessToken);
                     setUser(data.data);
                     alert("login success")
                     navigate('./userData');
                 } else {
-                    alert("Error! " + data.data.error)
+                    alert("Error! " + data)
                 }
-            }).catch( err => console.log('Error', err));
+            }).catch(err => console.log('Error', err));
 
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
@@ -54,14 +64,16 @@ export default function AdminLogin () {
                     <h2>Admin, Welcome!</h2>
 
                     <input
-                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required />
+                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)}
+                        value={username} required />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
+                        value={password}
                         onChange={e => setPassword(e.target.value)} required />
 
                     <React.Fragment>
-                        <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember) } />
+                        <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember)} />
 
                         <Link to="/auth/forgot-password">Forgot password?</Link>
                     </React.Fragment>
