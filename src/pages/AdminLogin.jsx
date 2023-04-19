@@ -12,7 +12,7 @@ export default function AdminLogin () {
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { isAuth, setIsAuth } = useContext(UserContext)
+    const { isAuth, setIsAuth, token, setToken, user, setUser } = useContext(UserContext)
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -27,19 +27,17 @@ export default function AdminLogin () {
             password,
         })
             .then(data => {
-                console.log(data.data, "came from admin login...");
-                if (data.data.status === 'OK') {
+                console.log(data, "came from admin login...");
+                if (data.data.status === 200) {
                     setIsAuth(true);
-                    // setTimeout(() => {
-                        alert("login success")
-                        window.localStorage.setItem("token", data.data.data)
-                        window.location.href = './userData';
-                    // }, 100);
-
+                    setToken(data.data.accessToken);
+                    setUser(data.data);
+                    alert("login success")
+                    navigate('./userData');
                 } else {
                     alert("Error! " + data.data.error)
                 }
-            });
+            }).catch( err => console.log('Error', err));
 
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
