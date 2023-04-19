@@ -17,12 +17,10 @@ export default function AdminLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(false);
-    useEffect(() => {
-        if (localStorage.getItem('a-u-n') && localStorage.getItem('p')) {
-            setUsername(localStorage.getItem('a-u-n'));
-            setPassword(localStorage.getItem('p'));
-        }
-    })
+    // if (localStorage.getItem('a-u-n') && localStorage.getItem('p')) {
+    //     setUsername(localStorage.getItem('a-u-n'));
+    //     setPassword(localStorage.getItem('p'));
+    // }
 
     const checkLogin = e => {
         e.preventDefault();
@@ -64,8 +62,10 @@ export default function AdminLogin() {
                     <h2>Admin, Welcome!</h2>
 
                     <input
-                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)}
-                        value={username} required />
+                        type="text" className='input-text' placeholder='Username' 
+                        value={ localStorage.getItem('a-u-n') && username}
+                        onChange={e => setUsername(e.target.value)}
+                        required />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
