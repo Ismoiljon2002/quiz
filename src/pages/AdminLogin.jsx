@@ -54,7 +54,7 @@ export default function AdminLogin () {
                 <Form.Field required>
 
                     <img src={logo} />
-                    <h2>Login to Your account</h2>
+                    <h2>Admin, Welcome!</h2>
 
                     <input
                         type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required />

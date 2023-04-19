@@ -24,7 +24,8 @@ function Quiz() {
         } 
     }, [])
 
-    return (
+    if ( !isAuth ) navigate('/');
+    else return (
         <div className='quiz-page'>
             <Grid>
                 <Grid.Column width={12}>
@@ -53,7 +54,7 @@ function Quiz() {
                                 {
                                     questionList.map((q, i) =>
                                         <Button primary
-                                            className={i == activeQuestion ? "active" : ""}
+                                            className={i === activeQuestion ? "active" : ""}
                                             onClick={() => setActiveQuestion(i)}
                                         > {i + 1} </Button>
                                     )
@@ -102,7 +103,7 @@ function Quiz() {
                                 {
                                     questionList.map((q, i) =>
                                         <Button primary
-                                            className={i == activeQuestion ? "active" : ""}
+                                            className={i === activeQuestion ? "active" : ""}
                                             onClick={() => setActiveQuestion(i)}
                                         > {i + 1} </Button>
                                     )
