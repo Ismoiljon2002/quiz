@@ -1,8 +1,9 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
+import Dashboard from './Dashboard'
 
 import logo from '../img/logo-light.png';
 import './styles/Login.css';
@@ -16,7 +17,12 @@ export default function SignInPage() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [remember, setRemember] = useState(false);
+    const [remember, setRemember] = useState(localStorage.getItem('p') && localStorage.getItem('u') ? true : false);
+
+    useEffect(() => {
+        setUsername(localStorage.getItem('u'));
+        setPassword(localStorage.getItem('p'));
+    }, [])
 
     const checkLogin = e => {
         e.preventDefault();
@@ -39,6 +45,14 @@ export default function SignInPage() {
             ],
             active:true,
         })
+
+        if (remember) {
+            localStorage.setItem('u', username);
+            localStorage.setItem('p', password);
+        } else {
+            localStorage.removeItem('u');
+            localStorage.removeItem('p');
+        }
 
         navigate('/dashboard');
 
@@ -67,7 +81,9 @@ export default function SignInPage() {
 
     }
 
-    return (
+    if (isAuth)
+        return <Dashboard />;
+    else return (
         <div className="login-page text-center m-5-auto">
 
             <Form onSubmit={checkLogin}>
@@ -77,11 +93,21 @@ export default function SignInPage() {
                     <h2>Login to Your account</h2>
 
                     <input
-                        type="text" className='input-text' placeholder='Username' onChange={e => setUsername(e.target.value)} required />
+                        type="text" 
+                        className='input-text' 
+                        placeholder='Username'
+                        value={username} 
+                        onChange={e => setUsername(e.target.value)} 
+                        minLength={7}
+                        required 
+                    />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
-                        onChange={e => setPassword(e.target.value)} required />
+                        value={password}
+                        minLength={6}
+                        onChange={e => setPassword(e.target.value)} required 
+                    />
 
                     <React.Fragment>
                         <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember) } />
