@@ -39,10 +39,12 @@ export default function AdminLogin() {
                 console.log(res, "came from admin login...");
                 if (res.status === 200) {
                     setIsAuth(true);
+                    
                     setToken(res.data.accessToken);
+                    
                     setUser(res.data);
-                    alert("login success")
-                    navigate('./userData');
+                    
+                    navigate('/dashboard');
                 } else {
                     alert("Error! " + res)
                 }

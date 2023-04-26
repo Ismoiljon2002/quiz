@@ -26,26 +26,8 @@ export default function SignInPage() {
 
     const checkLogin = e => {
         e.preventDefault();
-        setIsAuth(!isAuth);
-        setUser({
-            username,
-            first_name: "Ismoiljon",
-            last_name: "Mirabdullayev",
-            middle_name: "Ibrohimjon o'g'li",
-            dob: "29-06-2002",
-            email: "2110176@newuu.uz",
-            password,
-            role: "professor",
-            coursesList:[ 1, 2, 3, 4,
-                {course_id:1},
-                {course_id:2},
-                {course_id:3},
-                {course_id:4},
-                {course_id:5},
-            ],
-            active:true,
-        })
-
+       
+       
         if (remember) {
             localStorage.setItem('u', username);
             localStorage.setItem('p', password);
@@ -54,27 +36,27 @@ export default function SignInPage() {
             localStorage.removeItem('p');
         }
 
-        navigate('/dashboard');
+        
+        axios.post("http://localhost:8080/api/signin/", {
+            username,
+            password,
+        })
+            .then(res => {
+                console.log(res.data, "came from user login...");
+                if (res.status === 200) {
+                    setIsAuth(true);
 
-        // axios.post("http://localhost:8080/api/signin/", {
-        //     username,
-        //     password,
-        // })
-        //     .then(data => {
-        //         console.log(data.data, "came from user login...");
-        //         if (data.data.status === 'OK') {
-        //             setIsAuth(true);
-        //             setTimeout(() => {
-        //                 alert("login success")
-        //                 window.localStorage.setItem("token", data.data.data)
-        //                 window.location.href = './userData';
-        //             }, 100);
-
-        //         } else {
-        //             alert("Error! " + data.data.error)
-        //         }
-        //     });
-
+                    alert("login success")
+                    
+                    window.localStorage.setItem("token", res.data.accessToken);
+                    
+                    setUser(res.data);
+                    
+                    navigate('/dashboard');
+                } else {
+                    alert("Error! " + res.data.error)
+                }
+            });
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
         // }

@@ -18,12 +18,12 @@ function Dashboard() {
         } 
     }, [])
 
-    switch (user?.role) {
-        case "admin":
+    switch (user?.roles) {
+        case "ROLE_ADMIN":
             return <AdminDashboard />;
-        case "professor":
+        case "ROLE_PROFESSOR":
             return <ProfessorDashboard />;
-        case "student":
+        case "ROLE_STUDENT":
             return <StudentDashboard />;
         default:
             navigate('/');
