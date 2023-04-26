@@ -16,34 +16,35 @@ export default function AdminLogin() {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-    const [remember, setRemember] = useState(false);
-    // if (localStorage.getItem('a-u-n') && localStorage.getItem('p')) {
-    //     setUsername(localStorage.getItem('a-u-n'));
-    //     setPassword(localStorage.getItem('p'));
-    // }
+    const [remember, setRemember] = useState(localStorage.getItem('a-p') && localStorage.getItem('a-u') ? true : false);
+    
 
     const checkLogin = e => {
         e.preventDefault();
         console.log(username, password);
-        if ( remember ) {
-            localStorage.setItem('a-u-n', username);
-            localStorage.setItem('p', password);
+        
+        if (remember) {
+            localStorage.setItem('a-u', username);
+            localStorage.setItem('a-p', password);
+        } else {
+            localStorage.removeItem('a-u');
+            localStorage.removeItem('a-p');
         }
 
         axios.post("http://localhost:8080/api/v1/admin/login", {
             username,
             password,
         })
-            .then(data => {
-                console.log(data, "came from admin login...");
-                if (data.status === 200) {
+            .then(res => {
+                console.log(res, "came from admin login...");
+                if (res.status === 200) {
                     setIsAuth(true);
-                    setToken(data.data.accessToken);
-                    setUser(data.data);
+                    setToken(res.data.accessToken);
+                    setUser(res.data);
                     alert("login success")
                     navigate('./userData');
                 } else {
-                    alert("Error! " + data)
+                    alert("Error! " + res)
                 }
             }).catch(err => console.log('Error', err));
 
@@ -51,6 +52,12 @@ export default function AdminLogin() {
         //     navigate(location.state.from)
         // }
     }
+
+    useEffect(() => {
+        setUsername(localStorage.getItem('a-u'));
+        setPassword(localStorage.getItem('a-p'));
+    }, [])
+
 
     return (
         <div className="login-page text-center m-5-auto">
@@ -62,15 +69,20 @@ export default function AdminLogin() {
                     <h2>Admin, Welcome!</h2>
 
                     <input
-                        type="text" className='input-text' placeholder='Username' 
-                        value={ localStorage.getItem('a-u-n') && username}
+                        type="text" 
+                        className='input-text' 
+                        placeholder='Username' 
+                        value={username}
                         onChange={e => setUsername(e.target.value)}
-                        required />
+                        required 
+                    />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)} required />
+                        onChange={e => setPassword(e.target.value)} 
+                        required 
+                    />
 
                     <React.Fragment>
                         <Checkbox label="Remember Me" checked={remember} onClick={() => setRemember(!remember)} />
