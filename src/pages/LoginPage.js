@@ -1,6 +1,6 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Form, Input, Button, Checkbox } from 'semantic-ui-react';
+import { Form, Button, Checkbox } from 'semantic-ui-react';
 import axios from 'axios';
 import { UserContext } from '../context/UserContext';
 import Dashboard from './Dashboard'
@@ -36,27 +36,29 @@ export default function SignInPage() {
             localStorage.removeItem('p');
         }
 
+        setIsAuth(true);
+        navigate('/quiz');
         
-        axios.post("http://localhost:8080/api/signin/", {
-            username,
-            password,
-        })
-            .then(res => {
-                console.log(res.data, "came from user login...");
-                if (res.status === 200) {
-                    setIsAuth(true);
+        // axios.post("http://localhost:8080/api/signin/", {
+        //     username,
+        //     password,
+        // })
+        //     .then(res => {
+        //         console.log(res.data, "came from user login...");
+        //         if (res.status === 200) {
+        //             setIsAuth(true);
 
-                    alert("login success")
+        //             alert("login success")
                     
-                    window.localStorage.setItem("token", res.data.accessToken);
+        //             window.localStorage.setItem("token", res.data.accessToken);
                     
-                    setUser(res.data);
+        //             setUser(res.data);
                     
-                    navigate('/dashboard');
-                } else {
-                    alert("Error! " + res.data.error)
-                }
-            });
+        //             navigate('/dashboard');
+        //         } else {
+        //             alert("Error! " + res.data.error)
+        //         }
+        //     });
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
         // }

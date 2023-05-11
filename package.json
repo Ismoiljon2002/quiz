@@ -12,9 +12,8 @@
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.3",
     "react-bootstrap-icons": "^1.10.3",
-    "react-donpm install popper.js --savem": "^18.2.0",
     "react-router-dom": "^6.8.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "semantic-ui-css": "^2.5.0",
     "semantic-ui-react": "^2.1.4",
     "web-vitals": "^2.1.4"
@@ -42,5 +41,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "dotenv": "^16.0.3"
   }
 }

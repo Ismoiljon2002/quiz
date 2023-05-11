@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Form, Button, Checkbox } from 'semantic-ui-react';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
-
+// require('dotenv').config({path: "./../Env_Variable/.env"});
 import logo from '../img/logo-light.png';
 import './styles/Login.css';
 
@@ -18,6 +18,7 @@ export default function AdminLogin() {
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(localStorage.getItem('a-p') && localStorage.getItem('a-u') ? true : false);
     
+    const URL = process.env.BASE_URL || "http://localhost:8080";
 
     const checkLogin = e => {
         e.preventDefault();
@@ -30,8 +31,9 @@ export default function AdminLogin() {
             localStorage.removeItem('a-u');
             localStorage.removeItem('a-p');
         }
+        console.log(process.env.BASE_URL)
 
-        axios.post("http://localhost:8080/api/v1/admin/login", {
+        axios.post(`${URL}/api/v1/admin/login`, {
             username,
             password,
         })

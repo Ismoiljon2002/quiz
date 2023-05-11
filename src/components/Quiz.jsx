@@ -4,10 +4,11 @@ import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../context/UserContext';
 import { QuizContext } from '../context/QuizContext';
 
-import { Button, Icon, Popup, Card, Grid } from 'semantic-ui-react';
+import { Button, Icon, Popup, Card, Grid, Progress, Input, Checkbox, TextArea, Form } from 'semantic-ui-react';
 import QuestionCard from './QuestionCard';
 
 import './style/QuizCard.css';
+import QuizRightCards from './QuizRightCards';
 
 function Quiz() {
     const navigate = useNavigate()
@@ -18,13 +19,13 @@ function Quiz() {
     const [activeQuestion, setActiveQuestion] = useState(0);
 
     useEffect(() => {
-        if ( !isAuth ) {
+        if (!isAuth) {
             navigate('/');
             return;
-        } 
+        }
     }, [])
 
-    if ( !isAuth ) navigate('/');
+    if (!isAuth) navigate('/');
     else return (
         <div className='quiz-page'>
             <Grid>
@@ -51,29 +52,8 @@ function Quiz() {
                                         <Icon name='arrow left' />
                                     </Button.Content>
                                 </Button>
-                                {
-                                    questionList.map((q, i) =>
-                                        <Button primary
-                                            className={i === activeQuestion ? "active" : ""}
-                                            onClick={() => setActiveQuestion(i)}
-                                        > {i + 1} </Button>
-                                    )
-                                }
-                                <Button primary> 9 </Button>
-                                <Button primary> 10 </Button>
-                                <Button primary> 11 </Button>
-                                <Button primary> 12 </Button>
-                                <Button primary> 13 </Button>
-                                <Button primary> 14 </Button>
-                                <Button primary> 15 </Button>
-                                <Button primary> 16 </Button>
-                                <Button primary> 17 </Button>
-                                <Button primary> 18 </Button>
-                                <Button primary> 19 </Button>
-                                <Button primary> 20 </Button>
-                                <Button primary> 21 </Button>
-                                <Button primary> 22 </Button>
-                                <Button primary> 23 </Button>
+
+                                <Progress percent={55} indicating />
 
                                 <Button animated primary disabled={activeQuestion === questionList.length - 1 && "true"}
                                     onClick={() => setActiveQuestion(activeQuestion + 1)}>
@@ -89,45 +69,9 @@ function Quiz() {
 
                 {/* Rigt-side card */}
                 <Grid.Column width={4}>
-                    <Card className='right-side-card'>
-                        <Card.Header>
-                            <Button.Group>
-                                <Popup content='Hours' trigger={<Button content={0} />} />
-                                <Popup content='Minutes' trigger={<Button content={30} />} />
-                                <Popup content='Seconds' trigger={<Button content={56} />} />
-                            </Button.Group>
-                        </Card.Header>
-                        <div className="card-body">
-                            <Button.Group>
-
-                                {
-                                    questionList.map((q, i) =>
-                                        <Button primary
-                                            className={i === activeQuestion ? "active" : ""}
-                                            onClick={() => setActiveQuestion(i)}
-                                        > {i + 1} </Button>
-                                    )
-                                }
-                                <Button primary> 9 </Button>
-                                <Button primary> 10 </Button>
-                                <Button primary> 11 </Button>
-                                <Button primary> 12 </Button>
-                                <Button primary> 13 </Button>
-                                <Button primary> 14 </Button>
-                                <Button primary> 15 </Button>
-                                <Button primary> 16 </Button>
-                                <Button primary> 17 </Button>
-                                <Button primary> 18 </Button>
-                                <Button primary> 19 </Button>
-                                <Button primary> 20 </Button>
-                                <Button primary> 21 </Button>
-                                <Button primary> 22 </Button>
-                                <Button primary> 23 </Button>
-
-                            </Button.Group>
-                        </div>
-
-                    </Card>
+                    <QuizRightCards
+                     activeQuestion={activeQuestion}
+                     setActiveQuestion={setActiveQuestion} />
                 </Grid.Column>
             </Grid>
         </div>
