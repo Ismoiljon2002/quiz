@@ -6,6 +6,7 @@ import { UserContext } from '../context/UserContext';
 import Dashboard from './Dashboard'
 
 import logo from '../img/logo-light.png';
+import { BASE_URL } from '../baseURL';
 import './styles/Login.css';
 
 export default function SignInPage() {
@@ -36,32 +37,35 @@ export default function SignInPage() {
             localStorage.removeItem('p');
         }
 
-        setIsAuth(true);
-        navigate('/quiz');
-        
-        // axios.post("http://localhost:8080/api/signin/", {
-        //     username,
-        //     password,
-        // })
-        //     .then(res => {
-        //         console.log(res.data, "came from user login...");
-        //         if (res.status === 200) {
-        //             setIsAuth(true);
+        console.log("base url", BASE_URL)
 
-        //             alert("login success")
+        // setIsAuth(true);
+        // navigate('/quiz');
+        // setUser({ roles: "ROLE_PROFESSOR" })
+        
+        axios.post(`${BASE_URL}/v1/user/login`, {
+            username,
+            password,
+        })
+            .then(res => {
+                console.log(res.status, "came from user login...");
+                if (res.status === 200) {
+                    setIsAuth(true);
+
+                    alert("login success")
                     
-        //             window.localStorage.setItem("token", res.data.accessToken);
+                    window.localStorage.setItem("token", res.data.accessToken);
                     
-        //             setUser(res.data);
+                    setUser(res.data);
                     
-        //             navigate('/dashboard');
-        //         } else {
-        //             alert("Error! " + res.data.error)
-        //         }
-        //     });
-        // if ( isAuth && location.state?.from ) {
-        //     navigate(location.state.from)
-        // }
+                    navigate('/dashboard');
+                } else {
+                    alert("Error! " + res.data.error)
+                }
+            });
+        if ( isAuth && location.state?.from ) {
+            navigate(location.state.from)
+        }
 
     }
 

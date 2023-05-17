@@ -4,12 +4,13 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import AdminLogin from "./pages/AdminLogin";
 import SignInPage from "./pages/LoginPage";
 import ForgetPasswordPage from "./pages/ForgetPasswordPage";
-import Quiz from "./components/Quiz";
+import QuizPage from "./pages/QuizPage";
 import Dashboard from "./pages/Dashboard";
 import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css'
+import CoursePage from "./pages/CoursePage";
 
 function App() {
   return (
@@ -21,8 +22,8 @@ function App() {
           <Route path="/" element={<SignInPage />} />
           <Route path="/auth/hidden-admin/login" element={<AdminLogin />} />
           <Route path="/auth/forgot-password" element={<ForgetPasswordPage />} />
-          {/* <Route element={<ProtectedRoutes />} ></Route> */}
-          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/course" element={<CoursePage />} ></Route>
+          <Route path="/quiz" element={<QuizPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>
       </BrowserRouter>

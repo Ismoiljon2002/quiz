@@ -4,7 +4,7 @@ import Course from '../../components/Course';
 
 function ProfessorDashboard() {
 
-    const [ currentCourse, setCurrentCourse ] = useState(null)
+    const [ currentCourse, setCurrentCourse ] = useState({})
 
     const courses = [
         {

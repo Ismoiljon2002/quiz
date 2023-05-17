@@ -5,10 +5,10 @@ import { UserContext } from '../context/UserContext';
 import { QuizContext } from '../context/QuizContext';
 
 import { Button, Icon, Popup, Card, Grid, Progress, Input, Checkbox, TextArea, Form } from 'semantic-ui-react';
-import QuestionCard from './QuestionCard';
+import QuestionCard from '../components/QuestionCard';
 
-import './style/QuizCard.css';
-import QuizRightCards from './QuizRightCards';
+import '../components/style/QuizCard.css';
+import QuizRightCards from '../components/QuizRightCards';
 
 function Quiz() {
     const navigate = useNavigate()

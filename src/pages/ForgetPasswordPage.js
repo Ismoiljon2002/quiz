@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
-import './styles/Login.css';
 import { Form, Input, Button } from 'semantic-ui-react';
-// import logo from '../img/nuu_logo.png';
 import logo from '../img/logo-light.png';
+import { BASE_URL } from '../baseURL';
+import './styles/Login.css';
+
 
 export default function ForgetPasswordPage() {
 
     const [email, setEmail] = useState(null);
 
-    const resetPassword = e => {
+    const resetPassword = async e => {
         e.preventDefault();
-        console.log(email, "email");
 
-        axios.post(`http://localhost:8080/api/forgot_password?email=${email}`)
+        await axios.post(`${BASE_URL}/forgot_password?email=${email}`)
             .then(data => {
                 if (data.status === 200) {
                     alert("reset success, now go to your email and smash the given link");

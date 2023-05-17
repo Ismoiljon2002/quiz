@@ -2,9 +2,12 @@ import axios from "axios";
 import { useEffect } from "react";
 import { useState } from "react";
 import { Button, Card, Table } from "react-bootstrap";
+import { BASE_URL } from "../baseURL";
+import { Spinner } from "react-bootstrap";
 
 function Course({ course }) {
 
+    const [ isLoading, setIsLoading ] = useState(true);
     const [quizQuestions, setQuizQuestions] = useState(null)
     let selectedQuestions = [];
 
@@ -16,7 +19,9 @@ function Course({ course }) {
     }
 
     const sendExamPaper = () => {
-        axios.post('http://localhost:8080/api/questionPaperList/add/some4/1', {
+        setIsLoading(true);
+
+        axios.post(`${BASE_URL}/questionPaperList/add/some4/${1}`, {
             examPapers: {
                 examType: "MIDTERM",
                 status: false,
@@ -24,15 +29,18 @@ function Course({ course }) {
             },
             questionID: selectedQuestions
         }).then(res => console.log("res ", res))
+        setIsLoading(false);
+        
     }
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/course/questions/getQuestions/1")
+        axios.get(`${BASE_URL}/course/questions/getQuestions/${1}`)
             .then(res => {
                 console.log(res.data);
                 if (res.status === 200 ) setQuizQuestions(res.data);
                 else console.log(res.status)
             }).catch(err => console.log("response error\n", err));
+        setIsLoading(false);
     }, [])
 
     return (
@@ -40,6 +48,8 @@ function Course({ course }) {
             <h2>Course details</h2>
             <h3> Course Code: {course?.c_code} </h3>
             <h3> Course name: {course?.c_name} </h3>
+
+            { isLoading && <h1>loading...</h1>}
 
             <Table stripped="true">
                 <thead>

@@ -3,9 +3,9 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Form, Button, Checkbox } from 'semantic-ui-react';
 import { UserContext } from '../context/UserContext';
 import axios from 'axios';
-// require('dotenv').config({path: "./../Env_Variable/.env"});
 import logo from '../img/logo-light.png';
 import './styles/Login.css';
+import { BASE_URL } from '../baseURL';
 
 export default function AdminLogin() {
 
@@ -17,13 +17,11 @@ export default function AdminLogin() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [remember, setRemember] = useState(localStorage.getItem('a-p') && localStorage.getItem('a-u') ? true : false);
-    
-    const URL = process.env.BASE_URL || "http://localhost:8080";
 
     const checkLogin = e => {
         e.preventDefault();
         console.log(username, password);
-        
+
         if (remember) {
             localStorage.setItem('a-u', username);
             localStorage.setItem('a-p', password);
@@ -31,26 +29,24 @@ export default function AdminLogin() {
             localStorage.removeItem('a-u');
             localStorage.removeItem('a-p');
         }
-        console.log(process.env.BASE_URL)
 
-        axios.post(`${URL}/api/v1/admin/login`, {
+        axios.post(`${BASE_URL}/admin/login`, {
             username,
             password,
         })
             .then(res => {
-                console.log(res, "came from admin login...");
+                console.log(res, "came from admin login PAGE...");
                 if (res.status === 200) {
                     setIsAuth(true);
-                    
                     setToken(res.data.accessToken);
-                    
                     setUser(res.data);
-                    
+
                     navigate('/dashboard');
                 } else {
                     alert("Error! " + res)
                 }
-            }).catch(err => console.log('Error', err));
+            })
+            .catch(err => console.log('Error', err));
 
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
@@ -73,19 +69,19 @@ export default function AdminLogin() {
                     <h2>Admin, Welcome!</h2>
 
                     <input
-                        type="text" 
-                        className='input-text' 
-                        placeholder='Username' 
+                        type="text"
+                        className='input-text'
+                        placeholder='Username'
                         value={username}
                         onChange={e => setUsername(e.target.value)}
-                        required 
+                        required
                     />
                     <input className='input-password'
                         type="password"
                         placeholder="Password"
                         value={password}
-                        onChange={e => setPassword(e.target.value)} 
-                        required 
+                        onChange={e => setPassword(e.target.value)}
+                        required
                     />
 
                     <React.Fragment>

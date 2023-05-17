@@ -25,7 +25,7 @@ export const DB = [
         answers: [
             "VSC",
             "Virtual Studio",
-            "Visual Studio",
+            "Visual Studio Lorem ipsum dolor sit amet. this is a meaningless text to know some features of design.  this was not enough to compare the length    that's why I'm typing again to know and understand all the ways I don;t know",
         ],
         usedStatus: null,
         qtype: 'MULTIPLE_CHOICE',

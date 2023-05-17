@@ -31,7 +31,7 @@ function QuestionCard({ question, activeQuestion: index }) {
 
     return (
             <Card.Content>
-                <div className="question">Q. {quest}</div>
+                <div className="question">{quest}</div>
                 <p className='message'>{qtype === "WRITTEN" ? "Write your answer clearly" : "Please choose one of the following"} </p>
                 
                 <div className="answers">
