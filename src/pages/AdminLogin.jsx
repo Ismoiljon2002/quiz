@@ -2,17 +2,24 @@ import React, { useState, useContext, useEffect } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { Form, Button, Checkbox } from 'semantic-ui-react';
 import { UserContext } from '../context/UserContext';
-import axios from 'axios';
-import logo from '../img/logo-light.png';
-import './styles/Login.css';
+import { LoaderComponent, AlertComponent } from '../components/CustomComponents';
 import { BASE_URL } from '../baseURL';
+import logo from '../img/logo-light.png';
+import axios from 'axios';
 
+import './styles/Login.css';
 export default function AdminLogin() {
 
     const navigate = useNavigate();
     const location = useLocation();
 
-    const { setIsAuth, setToken, setUser } = useContext(UserContext)
+    const { setIsAuth, setToken, setUser } = useContext(UserContext);
+
+    const [showAlert, setShowAlert] = useState(false);
+    const [alertMessage, setAlertMessage] = useState("");
+    const [alertType, setAlertType] = useState("");
+
+    const [isLoading, setIsLoading] = useState(false);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -20,7 +27,6 @@ export default function AdminLogin() {
 
     const checkLogin = e => {
         e.preventDefault();
-        console.log(username, password);
 
         if (remember) {
             localStorage.setItem('a-u', username);
@@ -30,23 +36,32 @@ export default function AdminLogin() {
             localStorage.removeItem('a-p');
         }
 
+        setIsLoading(true);
+
         axios.post(`${BASE_URL}/admin/login`, {
             username,
             password,
         })
             .then(res => {
-                console.log(res, "came from admin login PAGE...");
                 if (res.status === 200) {
                     setIsAuth(true);
-                    setToken(res.data.accessToken);
                     setUser(res.data);
+                    localStorage.setItem('token', res.data.accessToken);
 
                     navigate('/dashboard');
                 } else {
                     alert("Error! " + res)
                 }
+                setIsLoading(false);
             })
-            .catch(err => console.log('Error', err));
+            .catch(err => {
+                setAlertMessage(err.message);
+                setAlertType('danger')
+                setShowAlert(true);
+                setTimeout(() => { setShowAlert(false); }, 3000);
+            });
+
+        setTimeout(() => { setIsLoading(false) }, 3000);
 
         // if ( isAuth && location.state?.from ) {
         //     navigate(location.state.from)
@@ -62,6 +77,7 @@ export default function AdminLogin() {
     return (
         <div className="login-page text-center m-5-auto">
 
+            <AlertComponent message={alertMessage} variant={alertType} show={showAlert} />
             <Form onSubmit={checkLogin}>
                 <Form.Field required>
 
@@ -81,6 +97,7 @@ export default function AdminLogin() {
                         placeholder="Password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}
+                        minLength={8}
                         required
                     />
 
@@ -90,7 +107,10 @@ export default function AdminLogin() {
                         <Link to="/auth/forgot-password">Forgot password?</Link>
                     </React.Fragment>
 
-                    <Button type='submit' size="big" color='green' fluid>Login</Button>
+                    <Button type='submit' size="big" color='green' className='mb-2' fluid>Login</Button>
+                    {
+                        isLoading && <LoaderComponent ml="2" variant="light" />
+                    }
                 </Form.Field>
             </Form>
 

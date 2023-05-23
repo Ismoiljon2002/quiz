@@ -3,26 +3,39 @@ import { useNavigate } from 'react-router-dom';
 
 import { UserContext } from '../context/UserContext';
 import { QuizContext } from '../context/QuizContext';
+import { AnswerContext } from '../context/AnswerContext';
 
-import { Button, Icon, Popup, Card, Grid, Progress, Input, Checkbox, TextArea, Form } from 'semantic-ui-react';
 import QuestionCard from '../components/QuestionCard';
-
-import '../components/style/QuizCard.css';
 import QuizRightCards from '../components/QuizRightCards';
+
+import { Button, Icon, Card, Grid, Progress } from 'semantic-ui-react';
+import '../components/style/QuizCard.css';
+import axios from 'axios';
+import { BASE_URL } from '../baseURL';
 
 function Quiz() {
     const navigate = useNavigate()
 
     const { questionList } = useContext(QuizContext);
     const { isAuth } = useContext(UserContext);
+    const { answerList } = useContext(AnswerContext)
 
-    const [activeQuestion, setActiveQuestion] = useState(0);
+    const [ activeQuestion, setActiveQuestion ] = useState(0);
+
+    const submit = () => {
+        console.log(answerList)
+    }
+
 
     useEffect(() => {
         if (!isAuth) {
             navigate('/');
             return;
         }
+
+        axios.get(`${BASE_URL}/questions/getQuestions/1`, {
+            
+        })
     }, [])
 
     if (!isAuth) navigate('/');
@@ -63,6 +76,7 @@ function Quiz() {
                                     </Button.Content>
                                 </Button>
                             </Button.Group>
+                            <Button className='quiz-submit-btn' onClick={submit}>Submit</Button>
                         </div>
                     </Card>
                 </Grid.Column>

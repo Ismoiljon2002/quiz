@@ -24,13 +24,13 @@ function QuizRightCards({activeQuestion, setActiveQuestion}) {
 
                         {
                             questionList.map((q, i) =>
-                                <Button primary
+                                <Button primary key={i}
                                     className={i === activeQuestion ? "active" : ""}
                                     onClick={() => setActiveQuestion(i)}
                                 > {i + 1} </Button>
                             )
                         }
-                        <Button primary> 9 </Button>
+                        {/* <Button primary> 9 </Button>
                         <Button primary> 10 </Button>
                         <Button primary> 11 </Button>
                         <Button primary> 12 </Button>
@@ -44,7 +44,7 @@ function QuizRightCards({activeQuestion, setActiveQuestion}) {
                         <Button primary> 20 </Button>
                         <Button primary> 21 </Button>
                         <Button primary> 22 </Button>
-                        <Button primary> 23 </Button>
+                        <Button primary> 23 </Button> */}
 
                     </Button.Group>
                 </div>
@@ -58,7 +58,7 @@ function QuizRightCards({activeQuestion, setActiveQuestion}) {
 
                         <TextArea
                             placeholder="Write Your comment"
-                            maxlength="250"
+                            maxLength="250"
                             disabled={!isWrongQuestion}
                         />
                     </Form>

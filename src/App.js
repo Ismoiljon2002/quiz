@@ -10,7 +10,7 @@ import ProtectedRoutes from "./components/ProtectedRoutes";
 
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'semantic-ui-css/semantic.min.css'
-import CoursePage from "./pages/CoursePage";
+import AdminSignUp from "./pages/AdminSignUp";
 
 function App() {
   return (
@@ -21,8 +21,8 @@ function App() {
         <Routes>
           <Route path="/" element={<SignInPage />} />
           <Route path="/auth/hidden-admin/login" element={<AdminLogin />} />
+          <Route path="/auth/hidden-admin/signup" element={<AdminSignUp />} />
           <Route path="/auth/forgot-password" element={<ForgetPasswordPage />} />
-          <Route path="/course" element={<CoursePage />} ></Route>
           <Route path="/quiz" element={<QuizPage />} />
           <Route path="/dashboard" element={<Dashboard />} />
         </Routes>

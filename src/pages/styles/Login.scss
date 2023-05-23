@@ -1,8 +1,7 @@
 @import "../../base";
 
 /***    Login Page     ***/
-
-.login-page {
+.login-page, .admin-signup-page {
     background-image: url('../../img/univer1.jpg');
     @include setBgImg;
     min-height: 100vh !important;
@@ -73,5 +72,18 @@
         .reset-password-btn {
             margin: 30px 0;
         }
+    }
+}
+
+.admin-signup-page {
+    form {
+        img {width: 50%;}
+        h2 {
+            padding: 0 !important;
+        }
+        input, .input-text, .input-password {
+            border-radius: 10px !important;
+            margin: 0 0 15px !important;
+        } 
     }
 }

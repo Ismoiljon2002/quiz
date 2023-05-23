@@ -69,7 +69,7 @@ a {
 }
 
 /***    Login Page     ***/
-.login-page {
+.login-page, .admin-signup-page {
   background-image: url("../../img/univer1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -79,7 +79,7 @@ a {
   justify-content: center;
   align-items: center;
 }
-.login-page form {
+.login-page form, .admin-signup-page form {
   width: 400px;
   height: 500px;
   background: rgba(36, 37, 65, 0.45);
@@ -89,13 +89,13 @@ a {
   padding: 2rem;
   box-shadow: 20px -10px 30px rgba(255, 255, 255, 0.35), -10px 10px 35px rgba(0, 0, 0, 0.7), -3px 5px 20px rgba(0, 0, 0, 0.7);
 }
-.login-page form h2 {
+.login-page form h2, .admin-signup-page form h2 {
   color: #fff;
   letter-spacing: 1px;
   font-weight: 600;
   padding: 0 0 20px !important;
 }
-.login-page form input, .login-page form .input-email {
+.login-page form input, .login-page form .input-email, .admin-signup-page form input, .admin-signup-page form .input-email {
   border: 1px solid transparent !important;
   border-radius: 10px !important;
   padding: 13px 22px !important;
@@ -103,38 +103,49 @@ a {
   background: rgba(36, 37, 65, 0.75) !important;
   color: #fff !important;
 }
-.login-page form input:focus, .login-page form .input-email:focus {
+.login-page form input:focus, .login-page form .input-email:focus, .admin-signup-page form input:focus, .admin-signup-page form .input-email:focus {
   border: 1px solid #21ba45 !important;
   border-left-width: 7px !important;
   padding: 13px 15px !important;
 }
-.login-page form .input-text {
+.login-page form .input-text, .admin-signup-page form .input-text {
   border-bottom-left-radius: 0 !important;
   border-bottom-right-radius: 0 !important;
 }
-.login-page form .input-password {
+.login-page form .input-password, .admin-signup-page form .input-password {
   border-top-left-radius: 0 !important;
   border-top-right-radius: 0 !important;
 }
-.login-page form .checkbox {
+.login-page form .checkbox, .admin-signup-page form .checkbox {
   padding: 30px 80px 30px 0;
 }
-.login-page form .checkbox label {
+.login-page form .checkbox label, .admin-signup-page form .checkbox label {
   font-size: 16px !important;
   color: #fff !important;
 }
-.login-page form a {
+.login-page form a, .admin-signup-page form a {
   color: #ffffff;
   font-size: 16px;
   cursor: pointer;
 }
-.login-page form a:hover {
+.login-page form a:hover, .admin-signup-page form a:hover {
   text-decoration: underline !important;
 }
-.login-page form button {
+.login-page form button, .admin-signup-page form button {
   border-radius: 10px !important;
   letter-spacing: 2px;
 }
-.login-page form .reset-password-btn {
+.login-page form .reset-password-btn, .admin-signup-page form .reset-password-btn {
   margin: 30px 0;
+}
+
+.admin-signup-page form img {
+  width: 50%;
+}
+.admin-signup-page form h2 {
+  padding: 0 !important;
+}
+.admin-signup-page form input, .admin-signup-page form .input-text, .admin-signup-page form .input-password {
+  border-radius: 10px !important;
+  margin: 0 0 15px !important;
 }/*# sourceMappingURL=Login.css.map */

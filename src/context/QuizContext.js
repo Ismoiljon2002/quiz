@@ -6,8 +6,9 @@ export const QuizProvider = ({ children }) => {
 
     const [ questionList, setQuestionList ] = useState(DB);
 
-
-    return <QuizContext.Provider value={{ questionList, setQuestionList }}>
+    return <QuizContext.Provider value={{ 
+        questionList, setQuestionList 
+    }}>
         {children}
     </QuizContext.Provider>
 }
