@@ -81,7 +81,7 @@ a {
 }
 .login-page form, .admin-signup-page form {
   width: 400px;
-  height: 500px;
+  min-height: 500px;
   background: rgba(36, 37, 65, 0.45);
   -webkit-backdrop-filter: blur(7px);
           backdrop-filter: blur(7px);

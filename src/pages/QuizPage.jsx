@@ -16,16 +16,13 @@ import { BASE_URL } from '../baseURL';
 function Quiz() {
     const navigate = useNavigate()
 
-    const { questionList } = useContext(QuizContext);
+    const { questionList, setQuestionList } = useContext(QuizContext);
     const { isAuth } = useContext(UserContext);
-    const { answerList } = useContext(AnswerContext)
+    const { answerList } = useContext(AnswerContext);
 
     const [ activeQuestion, setActiveQuestion ] = useState(0);
 
-    const submit = () => {
-        console.log(answerList)
-    }
-
+    const submit = () => {console.log(answerList)}
 
     useEffect(() => {
         if (!isAuth) {
@@ -34,8 +31,13 @@ function Quiz() {
         }
 
         axios.get(`${BASE_URL}/questions/getQuestions/1`, {
-            
+            headers: { Authorization: 'Bearer eyJhbGciOiJIUzUxMiJ9.eyJzdWIiOiJzb21lNiIsImlhdCI6MTY4NTk3MzUzOSwiZXhwIjoxNjg1OTgzNTM5fQ.Bj_PUgAHaJjz-s0e0kievobk21cYs8QuWXXqedobQEDSsKu2dRbO9bty382PiQm53KtttXP-6OblqVP_D9oaiA' }
         })
+        .then(res => {
+            console.log(res, 'resp ques')
+            setQuestionList(res.data)
+        })
+        .catch(err => console.warn(err, 'err'))
     }, [])
 
     if (!isAuth) navigate('/');
@@ -66,7 +68,7 @@ function Quiz() {
                                     </Button.Content>
                                 </Button>
 
-                                <Progress percent={55} indicating />
+                                <Progress percent={questionList.length / 100 * 50 } indicating />
 
                                 <Button animated primary disabled={activeQuestion === questionList.length - 1 && "true"}
                                     onClick={() => setActiveQuestion(activeQuestion + 1)}>
@@ -84,8 +86,10 @@ function Quiz() {
                 {/* Rigt-side card */}
                 <Grid.Column width={4}>
                     <QuizRightCards
-                     activeQuestion={activeQuestion}
-                     setActiveQuestion={setActiveQuestion} />
+                     activeQuestion={ activeQuestion }
+                     setActiveQuestion={ setActiveQuestion }
+                    //  givenTime={ givenTime } 
+                />
                 </Grid.Column>
             </Grid>
         </div>

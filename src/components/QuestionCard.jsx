@@ -13,6 +13,7 @@ function QuestionCard({ question, activeQuestion: index }) {
         comment: "",
         spentTime: 0
     }
+    console.log(answers, "answers")
 
     let spentTime = 0;
 
@@ -50,7 +51,7 @@ function QuestionCard({ question, activeQuestion: index }) {
                                 answers.map(a => <li
                                     key={a.id}
                                     onClick={e => chooseVariant(e, a)}
-                                >{a.answer}</li>)
+                                >{a}</li>)
                             }
                         </ul>
                 }

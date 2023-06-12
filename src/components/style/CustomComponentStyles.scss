@@ -1,0 +1,44 @@
+@import '../../base';
+
+.modal-content {
+    border-radius: 20px;
+    box-shadow: inset 0 0 10px rgba($color: #000000, $alpha: .6),
+                0 0 20px #00000049;
+
+
+    .modal-body, .modal-header {
+        padding: 1.5rem 2rem;
+        .modal-title {
+            font-weight: 600;
+        }
+    }
+}
+.modal-dialog {
+    max-width: 70% !important;
+
+    .input-group {
+        margin: 0 0 20px;
+        // overflow: hidden;
+        .input-group-text {
+            background-color: $base-dark;
+            color: #fff;
+            font-size: 18px;
+            border: none;
+        }
+        input {
+            font-size: 18px;
+            font-weight: 500;
+            box-shadow: none;
+            padding: 10px 15px;
+        }
+    }
+    .form-select {
+        font-size: 18px;
+        font-weight: 500;
+        padding: 10px 15px;
+        box-shadow: none;
+        margin: 0 0 20px;
+    }
+
+
+}

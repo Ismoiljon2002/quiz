@@ -6,6 +6,8 @@ import AdminDashboard from './roles/AdminDashboard';
 import ProfessorDashboard from './roles/ProfessorDashboard';
 import StudentDashboard from './roles/StudentDashboard';
 
+import './styles/Dashboard.css';
+
 function Dashboard() {
 
     const { user, isAuth } = useContext(UserContext);

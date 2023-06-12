@@ -68,58 +68,39 @@ a {
   transition: 0.3s ease;
 }
 
-.navbar {
-  background-color: #242541 !important;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+.dashboard {
+  height: 100%;
+  background-image: url("https://img.freepik.com/free-photo/smooth-white-stucco-wall_1194-6786.jpg");
 }
-
-.navbar-brand {
-  font-size: 26px !important;
-  font-weight: 600;
+.dashboard .card {
+  border-radius: 30px;
+  padding: 20px;
+  box-shadow: 0 5px 20px rgb(214, 214, 214);
+  border: none;
 }
-.navbar-brand > img {
-  width: 150px;
+.dashboard .card > .btn {
+  width: 40%;
 }
-
-.navbar-toggler {
-  font-size: 15px !important;
-  padding: 5px 10px !important;
-  border: 1px solid #fff !important;
+.dashboard .card .draggable-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  height: 100px;
+  border-radius: 10px;
+  border: 4px dashed #777;
+  box-shadow: 0 0 20px #adadad;
+  padding: 20px;
+  font-size: 12px;
 }
-
-.navbar-user-img {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 5px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
-}
-.navbar-user-img > img {
+.dashboard .card .draggable-container input {
+  z-index: 1;
+  position: absolute;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-}
-.navbar-user-img > svg {
-  font-size: 25px;
-}
-
-.nav-link {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.text-bold {
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.dropdown-item {
-  font-size: 18px;
-  margin: 0 !important;
-  padding: 8px 15px;
-}
-.dropdown-item svg {
-  margin-right: 10px;
-}/*# sourceMappingURL=Navbar.css.map */
+  text-align: center;
+  opacity: 0;
+  cursor: pointer;
+}/*# sourceMappingURL=Dashboard.css.map */

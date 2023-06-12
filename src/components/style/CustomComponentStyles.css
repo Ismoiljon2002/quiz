@@ -68,58 +68,39 @@ a {
   transition: 0.3s ease;
 }
 
-.navbar {
-  background-color: #242541 !important;
-  box-shadow: 0 7px 20px rgba(0, 0, 0, 0.2);
+.modal-content {
+  border-radius: 20px;
+  box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.6), 0 0 20px rgba(0, 0, 0, 0.2862745098);
 }
-
-.navbar-brand {
-  font-size: 26px !important;
+.modal-content .modal-body, .modal-content .modal-header {
+  padding: 1.5rem 2rem;
+}
+.modal-content .modal-body .modal-title, .modal-content .modal-header .modal-title {
   font-weight: 600;
 }
-.navbar-brand > img {
-  width: 150px;
-}
 
-.navbar-toggler {
-  font-size: 15px !important;
-  padding: 5px 10px !important;
-  border: 1px solid #fff !important;
+.modal-dialog {
+  max-width: 70% !important;
 }
-
-.navbar-user-img {
-  display: inline-block;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  margin-right: 5px;
-  background-repeat: no-repeat;
-  background-size: cover;
-  background-position: center center;
+.modal-dialog .input-group {
+  margin: 0 0 20px;
 }
-.navbar-user-img > img {
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-}
-.navbar-user-img > svg {
-  font-size: 25px;
-}
-
-.nav-link {
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.text-bold {
-  font-weight: 700;
-  letter-spacing: 1px;
-}
-
-.dropdown-item {
+.modal-dialog .input-group .input-group-text {
+  background-color: #242541;
+  color: #fff;
   font-size: 18px;
-  margin: 0 !important;
-  padding: 8px 15px;
+  border: none;
 }
-.dropdown-item svg {
-  margin-right: 10px;
-}/*# sourceMappingURL=Navbar.css.map */
+.modal-dialog .input-group input {
+  font-size: 18px;
+  font-weight: 500;
+  box-shadow: none;
+  padding: 10px 15px;
+}
+.modal-dialog .form-select {
+  font-size: 18px;
+  font-weight: 500;
+  padding: 10px 15px;
+  box-shadow: none;
+  margin: 0 0 20px;
+}/*# sourceMappingURL=CustomComponentStyles.css.map */

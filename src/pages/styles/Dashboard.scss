@@ -1,0 +1,44 @@
+@import '../../base';
+
+.dashboard {
+    height: 100%;
+    background-image: url('https://img.freepik.com/free-photo/smooth-white-stucco-wall_1194-6786.jpg');
+
+    .card {
+        // height: 500px;
+        border-radius: 30px;
+        padding: 20px;
+        box-shadow: 0 5px 20px rgb(214, 214, 214);
+        border: none;
+
+        > .btn {
+            width: 40%;
+        }
+        .draggable-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100px;
+            border-radius: 10px;
+            border: 4px dashed #777;
+            box-shadow: 0 0 20px #adadad;
+            padding: 20px;
+            font-size: 12px;
+
+            input {
+                z-index: 1;
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                opacity: 0;
+                cursor: pointer;
+            }
+
+
+        }
+    }
+}

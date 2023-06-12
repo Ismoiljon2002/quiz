@@ -45,34 +45,34 @@ export default function SignInPage() {
 
         setIsLoading(true);
 
-        // setIsAuth(true);
-        // navigate('/quiz');
-        // setUser({ roles: "ROLE_PROFESSOR" })
+        setIsAuth(true);
+        navigate('/dashboard');
+        setUser({ roles: "ROLE_ADMIN" })
         
-        axios.post(`${BASE_URL}/user/login`, {
-            username,
-            password,
-        })
-            .then(res => {
-                if (res.status === 200) {
-                    setIsAuth(true);
+        // axios.post(`${BASE_URL}/user/login`, {
+        //     username,
+        //     password,
+        // })
+        //     .then(res => {
+        //         if (res.status === 200) {
+        //             setIsAuth(true);
                     
-                    window.localStorage.setItem("token", res.data.accessToken);
+        //             window.localStorage.setItem("token", res.data.accessToken);
                     
-                    setUser(res.data);
+        //             setUser(res.data);
                     
-                    navigate('/dashboard');
-                } else {
-                    alert("Error! " + res.data.error)
-                }
-                setIsLoading(false);
-            })
-            .catch(err => {
-                setAlertMessage(err.message);
-                setAlertType('danger')
-                setShowAlert(true);
-                setTimeout(() => { setShowAlert(false); }, 3000);
-            });
+        //             navigate('/dashboard');
+        //         } else {
+        //             alert("Error! " + res.data.error)
+        //         }
+        //         setIsLoading(false);
+        //     })
+        //     .catch(err => {
+        //         setAlertMessage(err.message);
+        //         setAlertType('danger')
+        //         setShowAlert(true);
+        //         setTimeout(() => { setShowAlert(false); }, 3000);
+        //     });
 
         setTimeout(() => { setIsLoading(false) }, 3000);
 

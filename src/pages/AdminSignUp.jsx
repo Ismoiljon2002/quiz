@@ -22,38 +22,28 @@ export default function AdminSignUp() {
     const [isLoading, setIsLoading] = useState(false);
 
     const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [passwordConfirm, setPasswordConfirm] = useState("");
-    const [remember, setRemember] = useState(localStorage.getItem('a-p') && localStorage.getItem('a-u') ? true : false);
 
     const checkLogin = e => {
         e.preventDefault();
 
-        console.log("confirm", checkPasswordConfirm())
-
         if ( !checkPasswordConfirm() ) {
-
-            if (remember) {
-                localStorage.setItem('a-u', username);
-                localStorage.setItem('a-p', password);
-            } else {
-                localStorage.removeItem('a-u');
-                localStorage.removeItem('a-p');
-            }
 
             setIsLoading(true);
 
             axios.post(`${BASE_URL}/admin/addAdmin`, {
                 username,
                 password,
+                role: 'ROLE_ADMIN',
+                email: "som@gmail.com",
+                // name: "some body",
             })
                 .then(res => {
+                    console.log(res)
                     if (res.status === 200) {
-                        setIsAuth(true);
-                        localStorage.setItem('token', res.data.accessToken);
-                        setUser(res.data);
-
-                        navigate('/dashboard');
+                        navigate('/auth/hidden-admin/login');
                     } else {
                         alert("Error! " + res)
                     }
@@ -110,6 +100,13 @@ export default function AdminSignUp() {
                         placeholder='Username'
                         value={username}
                         onChange={e => setUsername(e.target.value)}
+                        required
+                    />
+                    <input className='input-email'
+                        type="email"
+                        placeholder="Email"
+                        value={email}
+                        onChange={e => setEmail(e.target.value)}
                         required
                     />
                     <input className='input-password'

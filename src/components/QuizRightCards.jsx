@@ -2,11 +2,12 @@ import React, { useContext, useState } from 'react'
 import { Button, Icon, Popup, Card, Grid, Progress, Input, Checkbox, TextArea, Form } from 'semantic-ui-react';
 
 import { QuizContext } from '../context/QuizContext';
+import { useEffect } from 'react';
 
-function QuizRightCards({activeQuestion, setActiveQuestion}) {
+function QuizRightCards({ activeQuestion, setActiveQuestion }) {
     
     const { questionList } = useContext(QuizContext);
-
+    
     const [ isWrongQuestion, setIswrongQuestion ] = useState(false);
 
     return (
@@ -14,9 +15,9 @@ function QuizRightCards({activeQuestion, setActiveQuestion}) {
             <Card className='right-side-card'>
                 <Card.Header>
                     <Button.Group>
-                        <Popup content='Hours' trigger={<Button content={0} />} />
-                        <Popup content='Minutes' trigger={<Button content={30} />} />
-                        <Popup content='Seconds' trigger={<Button content={56} />} />
+                        <Popup content='Hours' trigger={<Button content={1} />} />
+                        <Popup content='Minutes' trigger={<Button content={16} />} />
+                        <Popup content='Seconds' trigger={<Button content={20} />} />
                     </Button.Group>
                 </Card.Header>
                 <div className="card-body">

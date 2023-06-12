@@ -47,7 +47,7 @@ export default function AdminLogin() {
                     setIsAuth(true);
                     setUser(res.data);
                     localStorage.setItem('token', res.data.accessToken);
-
+                    
                     navigate('/dashboard');
                 } else {
                     alert("Error! " + res)

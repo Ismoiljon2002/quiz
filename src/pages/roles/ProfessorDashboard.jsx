@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import SemesterSelect from '../../components/SemesterSelect';
 import Courses from '../Courses';
+import { Container } from 'react-bootstrap';
 
 function ProfessorDashboard() {
 
@@ -23,12 +24,12 @@ function ProfessorDashboard() {
     ]
 
     return (
-        <div className="prof dashboard lms container">
-            <h2>Learning Management Sysytem</h2>
-
-            <SemesterSelect />
-
-            <Courses courses={courses}/>
+        <div className="prof dashboard lms">
+            <Container>
+                <h2>Learning Management Sysytem</h2>
+                <SemesterSelect />
+                <Courses courses={courses}/>
+            </Container>
         </div>
     );
 }
